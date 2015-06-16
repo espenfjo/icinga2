@@ -58,6 +58,18 @@ There are Graphite addons available for collecting the performance data files to
 to be configured to point at the perfdata files. Icinga 2's [PerfdataWriter](5-advanced-topics.md#performance-data) will
 write to the performance data spool directory.
 
+### <a id="addons-graphing-kairosdb"></a> KairosDB
+
+[KairosDB](http://kairosdb.github.io/) is a time-series database
+storing collected metrics and making them available through restful apis
+and web interfaces.
+
+Use the [KairosdbWriter](5-advanced-topics.md#kairosdb-writer) feature
+for sending real-time metrics from Icinga 2 to KairosDB.
+
+    # icinga2 feature enable kairosdb
+
+
 ## <a id="addons-visualization"></a> Visualization
 
 ### <a id="addons-visualization-reporting"></a> Icinga Reporting

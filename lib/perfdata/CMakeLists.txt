@@ -17,11 +17,12 @@
 
 mkclass_target(gelfwriter.ti gelfwriter.tcpp gelfwriter.thpp)
 mkclass_target(graphitewriter.ti graphitewriter.tcpp graphitewriter.thpp)
+mkclass_target(kairosdbwriter.ti kairosdbwriter.tcpp kairosdbwriter.thpp)
 mkclass_target(opentsdbwriter.ti opentsdbwriter.tcpp opentsdbwriter.thpp)
 mkclass_target(perfdatawriter.ti perfdatawriter.tcpp perfdatawriter.thpp)
 
 set(perfdata_SOURCES
-  gelfwriter.cpp gelfwriter.thpp graphitewriter.cpp graphitewriter.thpp opentsdbwriter.cpp opentsdbwriter.thpp perfdatawriter.cpp perfdatawriter.thpp
+  gelfwriter.cpp gelfwriter.thpp kairosdbwriter.cpp kairosdbwriter.thpp graphitewriter.cpp graphitewriter.thpp opentsdbwriter.cpp opentsdbwriter.thpp perfdatawriter.cpp perfdatawriter.thpp
 )
 
 if(ICINGA2_UNITY_BUILD)
@@ -45,6 +46,11 @@ install_if_not_exists(
 
 install_if_not_exists(
   ${PROJECT_SOURCE_DIR}/etc/icinga2/features-available/graphite.conf
+  ${CMAKE_INSTALL_SYSCONFDIR}/icinga2/features-available
+)
+
+install_if_not_exists(
+  ${PROJECT_SOURCE_DIR}/etc/icinga2/features-available/kairosdb.conf
   ${CMAKE_INSTALL_SYSCONFDIR}/icinga2/features-available
 )
 

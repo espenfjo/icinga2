@@ -738,6 +738,27 @@ a shortcut for listing all flags.
 External interfaces like Icinga Web require everything except `DbCatCheck`
 which is the default value if `categories` is not set.
 
+## <a id="objecttype-kairosdbwriter"></a> KairosdbWriter
+
+Writes check result metrics and performance data to a defined
+KairosDB host.
+
+Example:
+
+    library "perfdata"
+
+    object KairosdbWriter "kairosdb" {
+      host = "127.0.0.1"
+      port = 4242
+    }
+
+Configuration Attributes:
+
+  Name            	|Description
+  ----------------------|----------------------
+  host            	|**Optional.** Graphite Carbon host address. Defaults to '127.0.0.1'.
+  port            	|**Optional.** Graphite Carbon port. Defaults to 4242.
+
 ## <a id="objecttype-livestatuslistener"></a> LiveStatusListener
 
 Livestatus API interface available as TCP or UNIX socket. Historical table queries

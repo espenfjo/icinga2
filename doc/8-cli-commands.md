@@ -215,12 +215,12 @@ The `feature enable` and `feature disable` commands can be used to enable and di
 
     # icinga2 feature enable <tab>
     api           command       debuglog      graphite      icingastatus  ido-pgsql     --library     --log-level   statusdata    --version
-    --color       compatlog     --define      --help        ido-mysql     --include     livestatus    perfdata      syslog
+    --color       compatlog     --define      --help        ido-mysql     --include     kairosdb livestatus    perfdata      syslog
 
 The `feature list` command shows which features are currently enabled:
 
     # icinga2 feature list
-    Disabled features: agent command compatlog debuglog gelf graphite icingastatus notification perfdata statusdata syslog
+    Disabled features: agent command compatlog debuglog gelf graphite icingastatus kairosdb notification perfdata statusdata syslog
     Enabled features: api checker livestatus mainlog
 
 
@@ -486,7 +486,7 @@ in the example configuration file.
 You can view a list of enabled and disabled features:
 
     # icinga2 feature list
-    Disabled features: api command compatlog debuglog graphite icingastatus ido-mysql ido-pgsql livestatus notification perfdata statusdata syslog
+    Disabled features: api command compatlog debuglog graphite icingastatus ido-mysql ido-pgsql kairosdb livestatus notification perfdata statusdata syslog
     Enabled features: checker mainlog notification
 
 Using the `icinga2 feature enable` command you can enable features:

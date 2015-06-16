@@ -111,7 +111,7 @@ You can verify that by calling `icinga2 feature list`
 enabled and disabled.
 
     # icinga2 feature list
-    Disabled features: api command compatlog debuglog graphite icingastatus ido-mysql ido-pgsql livestatus notification perfdata statusdata syslog
+    Disabled features: api command compatlog debuglog graphite icingastatus ido-mysql ido-pgsql kairosdb livestatus notification perfdata statusdata syslog
     Enabled features: checker mainlog notification
 
 

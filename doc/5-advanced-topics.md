@@ -689,6 +689,49 @@ Currently these events are processed:
 * State changes
 * Notifications
 
+### <a id="kairosdb-writer"></a> KairosDB Writer
+
+You can enable the feature using
+
+    # icinga2 feature enable kairosdb
+
+By default the `KairosdbWriter` object expects KairosDB to listen at
+`127.0.0.1` on TCP port `4242`.
+
+You can customize the metric prefix name by setting `vars.kairosdb_metric_name` on a service.
+And you can add custom tags by adding `vars.kairosdb_tags`
+
+In addition to the performance data retrieved from the check plugin, Icinga 2 sends
+internal check statistic data to KairosDB:
+
+  metric             | description
+  -------------------|------------------------------------------
+  current_attempt    | current check attempt
+  max_check_attempts | maximum check attempts until the hard state is reached
+  reachable          | checked object is reachable
+  downtime_depth     | number of downtimes this object is in
+  execution_time     | check execution time
+  latency            | check latency
+  state              | current state of the checked object
+  state_type         | 0=SOFT, 1=HARD state
+
+The following example illustrates how to configure the ping4 service for optimal KairosDB storage:
+	apply Service "ping4" {
+		import "generic-service"
+		vars.kairosdb_metric_name = "ping"
+		vars.kairosdb_tags = ["protocol=ipv4"]
+		check_command = "ping4"
+		assign where host.address
+	}
+
+This will create a metric with name "`ping`" in KairosDB with the following tags:
+  tag  	             | description
+  -------------------|------------------------------------------
+  host    	 		 | Host name that is being probed
+  source             | Icinga instance probing the host
+  protocol           | Custom tag defined in the service, here set to ipv4 for the ping4 check.
+  target             | The `ping4` probe will create three different target tags: `meta`, `rta` and `pl`. `rta` and `pl` are the sub checks of the probe. `meta` is the internal check statistic mentioned above.
+
 ### <a id="opentsdb-writer"></a> OpenTSDB Writer
 
 While there are some OpenTSDB collector scripts and daemons like tcollector available for
